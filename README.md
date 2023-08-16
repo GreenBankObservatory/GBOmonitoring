@@ -34,6 +34,6 @@ Included in this repo are several items: the Monitoring Webpage, <TBD>. To confi
 
 ```
     # source your venv
-    ./manage.py runserver 0.0.0.0:9437
+    ./manage.py runserver <machine, or 0.0.0.0>:9437
     # then navigate to the webpage on your browser at: <machine>:9437
 ```
