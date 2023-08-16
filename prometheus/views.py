@@ -8,5 +8,5 @@ def index(request):
     return HttpResponse("Hello, Clarice. I will put the prometheus connection here.")
 
 
-class query_page(TemplateView):
-    template_name = 'prom_query.html'
+class template_page(TemplateView):
+    template_name = 'prom_template.html'

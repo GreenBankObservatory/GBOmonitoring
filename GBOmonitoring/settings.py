@@ -9,12 +9,42 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from getpass import getuser
 from pathlib import Path
+
+import environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SETTINGS_DIR = Path(__file__).resolve().parent
 
+_user = getuser()
+env = environ.Env(
+    DEBUG=(bool, True),
+    ALLOWED_HOSTS=(list, []),
+    INTERNAL_IPS=(list, []),
+    SENTRY_ENV=(str, f"{_user}_dev"),
+)
+
+_env_file_template_path = Path(SETTINGS_DIR, ".env.template")
+_default_env_file_path = Path(SETTINGS_DIR, ".env")
+_env_file_path = env.str("ENV_PATH", _default_env_file_path)
+if not Path(_env_file_path).exists():
+    raise ValueError(
+        f"You must create a .env file at {_default_env_file_path} "
+        f"(use {_env_file_template_path} as a template), "
+        "or specify another path via the ENV_PATH variable"
+    )
+try:
+    with open(_env_file_path):
+        pass
+except PermissionError as error:
+    raise PermissionError(
+        f"You do not have permission to read {_env_file_path}. Please contact gbosdd@nrao.edu"
+        "if this is in error"
+    ) from error
+environ.Env.read_env(_env_file_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -75,12 +105,7 @@ WSGI_APPLICATION = 'GBOmonitoring.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = { }
 
 
 # Password validation
