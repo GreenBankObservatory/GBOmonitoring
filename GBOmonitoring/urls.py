@@ -19,9 +19,9 @@ from . import views
 #import home_page.views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('old_landing/', views.landing_page, name='landing'),
     path('prometheus/', include('prometheus.urls')),
-    #path('', include('home_page.urls').as_view()),
-    #path('admin/', admin.site.urls),
-    #path('', views.index, name='index'),
-    path('', views.landing_page, name='landing')
+    path("dashboards/", include("dashboards.urls")),
 ]

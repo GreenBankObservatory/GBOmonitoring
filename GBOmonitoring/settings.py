@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from getpass import getuser
 from pathlib import Path
-
 import environ
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -68,7 +68,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    "crispy_bootstrap4",
+    'crispy_bootstrap4',
+    'table', # django-datatable
+    'dashboards',
+    'prometheus',
 ]
 
 MIDDLEWARE = [
@@ -82,11 +85,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'GBOmonitoring.urls'
+LOGIN_REDIRECT_URL = 'home'   
+LOGOUT_REDIRECT_URL = 'home'
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'GBOmonitoring/templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['GBOmonitoring/templates', 'prometheus/templates'],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,6 +118,7 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = ["GBOmonitoring.db_routers.DbRouter"]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -150,6 +157,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATIC_ROOT production load 
+STATIC_ROOT = os.path.join(BASE_DIR, "GBOmonitoring/staticfiles")
+
+# STATIC_ROOT development load 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "GBOmonitoring/static"),
+)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
