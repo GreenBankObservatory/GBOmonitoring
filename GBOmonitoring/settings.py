@@ -31,11 +31,12 @@ _env_file_template_path = Path(SETTINGS_DIR, ".env.template")
 _default_env_file_path = Path(SETTINGS_DIR, ".env")
 _env_file_path = env.str("ENV_PATH", _default_env_file_path)
 if not Path(_env_file_path).exists():
-    raise ValueError(
+    print(
         f"You must create a .env file at {_default_env_file_path} "
         f"(use {_env_file_template_path} as a template), "
         "or specify another path via the ENV_PATH variable"
     )
+    _env_file_path = env.str("ENV_PATH", _env_file_template_path)
 try:
     with open(_env_file_path):
         pass
