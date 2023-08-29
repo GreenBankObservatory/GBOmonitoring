@@ -1,6 +1,18 @@
 from django.db import models
 
 class OSSData(models.Model):
+    '''
+    Description
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        None
+    
+    '''
     site_id = models.TextField(verbose_name="Site ID")
     source_id = models.TextField(verbose_name="Source ID")
     start_time = models.DateTimeField()

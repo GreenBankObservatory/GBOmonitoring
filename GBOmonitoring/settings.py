@@ -50,7 +50,7 @@ environ.Env.read_env(_env_file_path)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d#!t**)8l%4tfww90h%3hmey(^-80uyg-qgm&m4d1wjv^c6d+y'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'table', # django-datatable
     'dashboards',
     'prometheus',
+    'alerts',
 ]
 
 MIDDLEWARE = [

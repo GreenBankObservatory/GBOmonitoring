@@ -1,0 +1,8 @@
+export DOCS_ROOT="/PATH/TO/GBOmonitoring/docs/"
+export DOCS_ENV="../GBOmonitoring-venv-py3.11"
+export DOCS_HOST=""
+export DOCS_PORT=""
+
+export DJANGO_SETTINGS_MODULE=GBOmonitoring.settings
+
+alias startdocs="cd $DOCS_ROOT && source $DOCS_ENV/bin/activate && cd source && sphinx-autobuild . _build -b html --host $DOCS_HOST --port $DOCS_PORT"

@@ -1,0 +1,7 @@
+# GitHub Settings
+
+export GITHUB_USERNAME=""
+export GITHUB_TOKEN=""
+export GITHUB_REPO_OWNER="GreenBankObservatory"
+export GITHUB_REPO_NAME="GBOmonitoring"
+export GITHUB_REPO_URL="https://api.github.com/repos/$GITHUB_REPO_OWNER/$GITHUB_REPO_NAME/import/issues"

@@ -3,6 +3,18 @@ import pandas as pd
 from dashboards.models import OSSData
 
 def fetch_urls(url_selection):
+    '''
+    Description
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        None
+    
+    '''
     urls = pd.read_csv('/home/sandboxes/gbosdd/oss/config/urls.csv')
     if url_selection == 'read':
         return_url = urls['read_url'][0]
@@ -14,6 +26,18 @@ def fetch_urls(url_selection):
     return return_url
 
 def read_oss_db():
+    '''
+    Description
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        None
+    
+    '''
     read_url = fetch_urls('read')
     try:
         response = requests.get(read_url, timeout=5).json()
@@ -24,6 +48,18 @@ def read_oss_db():
     return response
 
 def fill_oss_df():
+    '''
+    Description
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        None
+    
+    '''
     oss_data = read_oss_db()
 
     pd_site_id = []
@@ -58,6 +94,18 @@ def fill_oss_df():
     return live_df
 
 def fill_oss_db():
+    '''
+    Fills a database with the current OSS information
+
+    Parameters
+    ----------
+        None
+
+    Returns
+    -------
+        None
+    
+    '''
     oss_df = fill_oss_df()
 
     for i in range(len(oss_df['pd_site_id'])):
