@@ -2,9 +2,9 @@ name: Django Tests
 
 on:
   push:
-    branches: [ "main" , "cat-dev" ]
+    branches: [ "main" , "release-2023.Q4", "cat-dev", "kasey-dev" ]
   pull_request:
-    branches: [ "main" , "cat-dev" ]
+    branches: [ "main" , "release-2023.Q4", "cat-dev", "kasey-dev" ]
 
 jobs:
   build:
