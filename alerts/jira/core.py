@@ -32,8 +32,8 @@ class JIRAServer:
     def load_environment(self):
         self.JIRA_SETTINGS_DIR = Path(__file__).resolve().parent
         self.env = environ.Env()
-        _env_file_template_path = Path(self.JIRA_SETTINGS_DIR, ".jira-env.template")
-        _default_env_file_path = Path(self.JIRA_SETTINGS_DIR, ".jira-env")
+        _env_file_template_path = Path(self.JIRA_SETTINGS_DIR, "jira.env.template")
+        _default_env_file_path = Path(self.JIRA_SETTINGS_DIR, "jira.env")
         _env_file_path = self.env.str("ENV_PATH", _default_env_file_path)
         if not Path(_env_file_path).exists():
             raise ValueError(

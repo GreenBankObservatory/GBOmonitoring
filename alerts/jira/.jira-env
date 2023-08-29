@@ -1,5 +1,0 @@
-export JIRA_SERVER="https://gbobservatory.atlassian.net"
-export JIRA_BOARD_ID=54
-export JIRA_PROJECT_ID=11629
-export JIRA_EMAIL="vcatlett@nrao.edu"
-export JIRA_API_KEY="ATATT3xFfGF0dW6p8zRhWJnqCj6_SLPcQKWzj6P3Y_QTenDh-ZPD37jxeyCHNYL2SiJC7DEbj6P5Dx1GLqhPOApUQu6EPSlBYborsJiX_TKfRvRRLor1T7LQpqVAfXXbWJalTB7b6xNnt5KlW8Y7OTUFhKc-aS4ftH_4_kWutbjjDlpXRnl9O6c=CD74E984"
