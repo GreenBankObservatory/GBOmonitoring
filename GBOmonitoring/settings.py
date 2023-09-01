@@ -14,7 +14,6 @@ from pathlib import Path
 import environ
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SETTINGS_DIR = Path(__file__).resolve().parent
@@ -161,7 +160,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # STATIC_ROOT production load 
-STATIC_ROOT = os.path.join(BASE_DIR, "GBOmonitoring/staticfiles")
+STATIC_ROOT = env("STATIC_ROOT")
 
 # STATIC_ROOT development load 
 STATICFILES_DIRS = (
