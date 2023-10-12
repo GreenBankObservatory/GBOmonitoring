@@ -2,16 +2,17 @@ name: Django Tests
 
 on:
   push:
-    branches: [ "main" , "release-2023.Q4", "cat-dev", "kasey-dev" ]
+    branches: [ "main", "cat-dev", "kasey-dev" ]
   pull_request:
-    branches: [ "main" , "release-2023.Q4", "cat-dev", "kasey-dev" ]
+    branches: [ "main", "cat-dev", "kasey-dev" ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: hatch build
     strategy:
-      max-parallel: 4
+      fail-fast: false
       matrix:
         python-version: [3.11]
 
@@ -21,10 +22,15 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
+    - name: Install dependencies
       run: |
+        pip install hatch
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Run Tests
+        pip install -e .
+    - name: Build with hatch
       run: |
-        python manage.py test
+        hatch build -c 
+    - name: Test with pytest
+      run: |
+        pytest
