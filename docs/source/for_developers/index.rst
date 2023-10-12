@@ -7,3 +7,4 @@ For Developers
    
    installation
    doc_standards
+   software_conventions
