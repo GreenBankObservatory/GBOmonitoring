@@ -116,7 +116,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    "woah": {
+        **env.db("WOAH_DB_URL"),
+        "TIME_ZONE": "UTC",
+        "TEST": {"DEPENDENCIES": []},
+    },
 }
 
 DATABASE_ROUTERS = ["GBOmonitoring.db_routers.DbRouter"]

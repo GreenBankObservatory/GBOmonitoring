@@ -1,8 +1,12 @@
 class DbRouter:
     # Map
     routes = {
-        "dashboards": "default",
-        "prometheus": "default",
+        "admin":"default",
+        "auth":"default",
+        "sessions":"default",
+        "contenttypes": "default",
+        "sites": "default",
+        "dashboards":"woah",
     }
 
     def db_for_read(self, model, **hints):

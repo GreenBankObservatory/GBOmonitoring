@@ -7,7 +7,7 @@ from dashboards.oss.core import *
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Welcome to home page")
+    return HttpResponse("Welcome to the dashboards home page")
 
 def ZtiltPos(request):
     ptitle = 'ZtiltPos'
