@@ -6,8 +6,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Local imports
-from display.plot.dash import *
-from display.ODS.core import *
+from visualization.plot.dash import *
+from visualization.ODS.core import *
 
 def home(request):
     return HttpResponse("Welcome to the alerts home page")

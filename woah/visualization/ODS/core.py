@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from dashboards.models import OSSData
+from visualization.models import OSSData
 
 def fetch_urls(url_selection):
     '''

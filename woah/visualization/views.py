@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
-from dashboards.plot.dash import *
+from visualization.plot.dash import *
 #from dashboards.tables import OSSTable
-from dashboards.oss.core import *
+from visualization.ODS.core import *
 
 # Create your views here.
 def home(request):
