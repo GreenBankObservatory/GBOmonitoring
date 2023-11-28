@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main", "cat-dev", "kasey-dev" ]
   pull_request:
-    branches: [ "main", "cat-dev", "kasey-dev" ]
+    branches: [ "main", "cat-dev", "cat-dev-coderedcms" ]
 
 jobs:
   build:
@@ -24,13 +24,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install hatch
-        python -m pip install --upgrade pip
+        pip install --upgrade pip
         pip install -r requirements.txt
-        pip install -e .
-    - name: Build with hatch
-      run: |
-        hatch build -c 
     - name: Test with pytest
       run: |
         pytest

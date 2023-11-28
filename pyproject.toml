@@ -1,130 +1,26 @@
-[project]
-name = "WOAH"
-description = ''
-readme = "README.md"
-requires-python = ">=3.11"
-license = {file = "LICENSE.md"}
-keywords = []
-dynamic = ["version"]
+[tool.poetry]
+name = "woah"
+version = "0.1.0"
+description = "The Watchdog Of Antenna Health"
 authors = [
-  { name = "Victoria Catlett", email = "vcatlett@nrao.edu" },
-  { name = "Kasey Purcell", email = "kpurcell@nrao.edu" },
-]
+    "Victoria Catlett <vcatlett@nrao.edu>",
+    "Kathlyn Purcell <vcatlett@nrao.edu>",
+    ]
+readme = "README.md"
 
-classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.11",
-]
+[tool.poetry.dependencies]
+python = "^3.11"
+coderedcms = "^3.0.2"
+django-sass = "^1.1.0"
+django-stubs = "^4.2.6"
+mypy = "^1.7.1"
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
+pytest-django = "^4.7.0"
+ruff = "^0.1.6"
+prometheus-client = "^0.19.0"
 
-dependencies = [ ]
-
-[project.optional-dependencies]
-dev = [
-  "ipdb",
-  "ipython",
-  "pytest",
-  "pytest-cov",
-  "wget",
-  "myst-parser",
-  "sphinx",
-  "sphinx-autobuild",
-  "sphinx-rtd-theme",
-  "sphinxcontrib-mermaid",
-  "numpydoc"
-]
-
-[project.urls]
-Documentation = "https://github.com/GreenBankObservatory/GBOmonitoring/tree/main#readme"
-Issues = "https://github.com/GreenBankObservatory/GBOmonitoring/issues"
-Source = "https://github.com/GreenBankObservatory/GBOmonitoring"
-
-[tool.hatch.version]
-path = "woah/__init__.py"
-
-[tool.hatch.envs.default]
-# By default hatch will effectively do $ pip install dysh[dev]
-features = ["dev"]
-
-# run via: $ hatch run <script>
-[tool.hatch.envs.default.scripts]
-test = "pytest {args}"
-lint = "ruff check . {args}"
-lint-all = "ruff check --select ALL {args}"
-lint-fix = "ruff check --select ALL --fix {args}"
-docs = "sphinx-autobuild {root}/docs {root}/docs/build -b html {args}"
-docs-build = "sphinx-build {root}/docs {root}/docs/build -b html {args}"
-
-[tool.hatch.envs.test]
-
-# run via: $ hatch run test:<script>
-[tool.hatch.envs.test.scripts]
-matrix = "pytest {args}"
-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/dysh --cov=tests {args}"
-
-# Run tests across all supported version of Python
-[[tool.hatch.envs.test.matrix]]
-python = ["311"]
-
-[tool.hatch.build.targets.sdist]
-include = ["/woah", "/tests"]
-exclude = [
-  "/.github",
-  "/.gitignore",
-  "*.swp",
-  "/attic",
-  "/build",
-  "/benchmark",
-  "/docs",
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["woah"]
-
-[tool.coverage.run]
-branch = true
-parallel = true
-
-[tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
-
-[tool.black]
-preview = true
-line-length = 120
-
-[tool.ruff]
-select = [
-  "F",    # https://beta.ruff.rs/docs/rules/#pyflakes-f
-  "E",    # https://beta.ruff.rs/docs/rules/#error-e
-  "W",    # https://beta.ruff.rs/docs/rules/#warning-w
-  "B",    # https://beta.ruff.rs/docs/rules/#flake8-bugbear-b
-  "I",    # https://beta.ruff.rs/docs/rules/#isort-i
-  "NPY",  # https://beta.ruff.rs/docs/rules/#numpy-specific-rules-npy
-  "PD",   # https://beta.ruff.rs/docs/rules/#pandas-vet-pd
-  "RUF",  # https://beta.ruff.rs/docs/rules/#ruff-specific-rules-ruf
-]
-fixable = ["ALL"]
-unfixable = ["B"]
-ignore = [
-  "E741",  # ambiguous-variable-name
-]
-line-length = 120
-
-[tool.ruff.per-file-ignores]
-# Ignore  in all `__init__.py` files
-"__init__.py" = ["E402", "F405", "F403"]
-"**/{tests,docs,tools}/*" = ["E402", "B011"]
-# The stuff in the attic doesn't need to be linted at all
-"attic/**" = ["ALL"]
-
-[tool.pytest.ini_options]
-minversion = "6.0"
-testpaths = ["tests", "woah", "docs"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
