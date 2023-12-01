@@ -19,6 +19,8 @@ urlpatterns = [
     # For anything not caught by a more specific rule above, hand over to
     # the page serving mechanism. This should be the last pattern in
     # the list:
+    path("plotly/", include("django_plotly_dash.urls")),
+    path("data/", include("data.urls")),
     path("", include(crx_urls)),
     # Alternatively, if you want pages to be served from a subpath
     # of your site, rather than the site root:
